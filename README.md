@@ -169,7 +169,7 @@ This endpoint retrieves a paginated list of all available grounds.
 ### Request
 
 - **Method:** GET
-- **URL:** /api/ground/groundList
+- **URL:** `/api/app/ground/groundList`
 - **Query Parameters:**
     - page (optional): Page number (default: 1)
     - limit (optional): Number of items per page (default: 10)
@@ -213,7 +213,7 @@ This endpoint retrieves detailed information about a specific ground based on it
 ### Request
 
 - **Method:** GET
-- **URL:** /api/app/ground/showGround
+- **URL:** `/api/app/ground/showGround`
 - **Body Parameters:**
   - ground_id: ID of the ground (required)
 
@@ -285,14 +285,14 @@ This endpoint retrieves detailed information about a specific ground based on it
         "ratings": []
     },
     "message": "Ground Details are fetched successfully!"
-}
-
+ }
+```
 ## Delete Ground Api
 
 ### Request
 
 - **Method:** POST
-- **URL:** /api/app/ground/deleteGround
+- **URL:** `/api/app/ground/deleteGround`
 - **Body Parameters:**
   - ground_id: ID of the ground to be deleted (required)
 
@@ -309,13 +309,13 @@ This endpoint retrieves detailed information about a specific ground based on it
   "success": true,
   "message": "Ground deleted successfully!"
 }
-
+```
 ## Get Ground Images
 
 ### Request
 
 - **Method:** GET
-- **URL:** /api/app/ground/getImageList
+- **URL:** `/api/app/ground/getImageList`
 - **Body Parameters:**
   - ground_id: ID of the ground (required)
 
@@ -345,3 +345,4 @@ This endpoint retrieves detailed information about a specific ground based on it
   "message": "Ground Images retrieved successfully!"
 }
 
+```
