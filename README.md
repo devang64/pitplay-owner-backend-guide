@@ -1,10 +1,12 @@
 # pitplay-owner-backend-guide
+## Table of Contents
+[Create Ground Api](#ground-creation-api)
+[Get All Ground List Api](#get-all-grounds)
 
 ### **Ground Creation API**
-
 ### Endpoint:
 
-- **URL:** **`/api/app/ground/createGround`**
+- **URL:** **`/api/app/ground/addGround`**
 - **Method:** POST
 
 ### Request Body:
@@ -156,3 +158,50 @@
   "message": "Internal Server Error"
   }
   ```
+
+## Get All Grounds
+
+This endpoint retrieves a paginated list of all available grounds.
+
+### Request
+
+- **Method:** GET
+- **URL:** /api/ground/groundList
+- **Headers:**
+    - Content-Type: application/json
+    - Authorization: Bearer <token> (if authentication is required)
+- **Query Parameters:**
+    - page (optional): Page number (default: 1)
+    - limit (optional): Number of items per page (default: 10)
+
+### Response
+
+- **Status Code:**
+    - 200 OK: Successfully retrieved the list of grounds.
+    - 404 Not Found: No grounds available.
+    - 400 Bad Request: Internal Server Error.
+- **Response Body (Success):**
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "_id": "ground_id",
+      "ground_name": "Ground Name",
+      "ground_address": "Ground Address",
+      "ground_service": ["Service 1", "Service 2"],
+      "ground_sports": ["Sport 1", "Sport 2"],
+      "ground_cover_img": "Cover Image URL"
+    }
+  ],
+  "pagination": {
+    "totalGrounds": 100, 
+    "totalPages": 10, 
+    "currentPage": 1 
+  }
+}
+
+```
+
+###
