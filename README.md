@@ -1,5 +1,4 @@
 # pitplay-owner-backend-guide
-# pitplay-owner-Backend-guide
 
 ### **Ground Creation API**
 
