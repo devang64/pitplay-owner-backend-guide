@@ -225,26 +225,62 @@ This endpoint retrieves detailed information about a specific ground based on it
 - **Response Body (Success):**
 ```json
 {
-  "success": true,
-  "data": {
-    "_id": "ground_id",
-    "ground_name": "Ground Name",
-    "ground_address": "Ground Address",
-    "ground_service": ["Service 1", "Service 2"],
-    "ground_sports": ["Sport 1", "Sport 2"],
-    "images": ["Image URL 1", "Image URL 2"],
-    "totalRatings": 5,
-    "ratings": [
-      {
-        "_id": "rating_id_1",
-        "user_id": {
-          "first_name": "First",
-          "last_name": "Last"
-        },
-        "rating_value": 4
-      },
-      // Additional rating objects if available
-    ]
-  },
-  "message": "Ground Details are fetched successfully!"
+    "success": false,
+    "data": {
+        "_id": "65f9cc66f99f259c2cf35c26",
+        "ground_name": "Vankhede Stadium",
+        "ground_description": "This is a sample ground description.",
+        "ground_address": "123 Sample Street",
+        "pincode": 12345,
+        "city": "Mumbai",
+        "state": "Maharastra",
+        "latitude": 37.7749,
+        "longitude": -122.4194,
+        "contact_no": "123-456-7890",
+        "ground_opening": "08:00",
+        "ground_closing": "10:00 ",
+        "price_per_hour": 50,
+        "price_per_day": 300,
+        "night_price": 300,
+        "weekend_per_day": 350,
+        "weekend_per_hour": 60,
+        "weekend_night_price": 75,
+        "night_start_time": "06:00",
+        "size_of_ground": "60 by 60 ft",
+        "ground_service": [
+            "bat and ball"
+        ],
+        "ground_sports": [
+            "cricket"
+        ],
+        "user_id": "65eeb8d3f8ee5dc49064ce74",
+        "status": "available",
+        "isDeleted": false,
+        "createdAt": "2024-03-19T17:33:26.207Z",
+        "updatedAt": "2024-03-19T17:33:26.207Z",
+        "__v": 0,
+        "images": [
+            {
+                "_id": "65f9cc69f99f259c2cf35c2a",
+                "ground_id": "65f9cc66f99f259c2cf35c26",
+                "image_order_id": 2,
+                "image_url": "https://res.cloudinary.com/dujldtzay/image/upload/v1710869610/grounds/jirlegid1wuzihosd4ul.jpg",
+                "image_path": "grounds/jirlegid1wuzihosd4ul",
+                "thumb_img": false,
+                "__v": 0
+            },
+            {
+                "_id": "65f9cc6bf99f259c2cf35c2b",
+                "ground_id": "65f9cc66f99f259c2cf35c26",
+                "image_order_id": 1,
+                "image_url": "https://res.cloudinary.com/dujldtzay/image/upload/v1710869612/grounds/dgysgqvl3gogmtz7xask.jpg",
+                "image_path": "grounds/dgysgqvl3gogmtz7xask",
+                "thumb_img": true,
+                "__v": 0
+            }
+        ],
+        "totalRatings": 0,
+        "ratings": []
+    },
+    "message": "Ground Details are fetched successfully!"
 }
