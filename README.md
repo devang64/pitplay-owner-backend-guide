@@ -168,9 +168,6 @@ This endpoint retrieves a paginated list of all available grounds.
 
 - **Method:** GET
 - **URL:** /api/ground/groundList
-- **Headers:**
-    - Content-Type: application/json
-    - Authorization: Bearer <token> (if authentication is required)
 - **Query Parameters:**
     - page (optional): Page number (default: 1)
     - limit (optional): Number of items per page (default: 10)
