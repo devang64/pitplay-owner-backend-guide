@@ -5,7 +5,8 @@
 3. [Show Ground Details Api](#show-ground-details)
 4. [Delete Ground Api](#delete-ground-api)
 5. [Get Ground Images APi](#get-ground-images)
-   
+6. [send Otp to mobile number Api](#send-otp-to-mobile-number-api)
+7. [verify otp](#verify-otp)
 ### **Ground Creation API**
 ### Endpoint:
 
@@ -346,7 +347,7 @@ This endpoint retrieves detailed information about a specific ground based on it
 }
 
 ```
-# generateOtpAndSend Function
+# send Otp to mobile number Api
 
 ## Endpoint
 
@@ -374,3 +375,30 @@ This endpoint retrieves detailed information about a specific ground based on it
     },
     "message": "OTP Sent to <mobile_number>"
   }
+```
+
+## Verify OTP
+
+### Request
+
+- **Method:** POST
+- **URL:** `/api/app/auth/verifyOtp`
+- **Body Parameters:**
+  - key: Encrypted user ID (required)
+  - otp: OTP entered by the user (required)
+
+### Response
+
+- **Status Code:**
+  - 200 OK: User is successfully authenticated.
+  - 400 Bad Request: Key and OTP are required or OTP is not valid.
+  - 500 Internal Server Error: An error occurred while processing the request.
+
+- **Response Body (Success):**
+
+```json
+{
+  "success": true,
+  "message": "User is authenticated!"
+}
+```
