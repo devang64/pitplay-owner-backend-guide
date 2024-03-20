@@ -1,7 +1,7 @@
 # pitplay-owner-backend-guide
 ## Table of Contents
-[Create Ground Api](#ground-creation-api)
-[Get All Ground List Api](#get-all-grounds)
+1. [Create Ground Api](#ground-creation-api)
+2. [Get All Ground List Api](#get-all-grounds)
 
 ### **Ground Creation API**
 ### Endpoint:
