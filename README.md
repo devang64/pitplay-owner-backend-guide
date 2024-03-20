@@ -3,7 +3,9 @@
 1. [Create Ground Api](#ground-creation-api)
 2. [Get All Ground List Api](#get-all-grounds)
 3. [Show Ground Details Api](#show-ground-details)
-
+4. [Delete Ground Api](#delete-ground-api)
+5. [Get Ground Images APi](#get-ground-images)
+   
 ### **Ground Creation API**
 ### Endpoint:
 
@@ -213,7 +215,7 @@ This endpoint retrieves detailed information about a specific ground based on it
 - **Method:** GET
 - **URL:** /api/app/ground/showGround
 - **Body Parameters:**
-  - id: ID of the ground (required)
+  - ground_id: ID of the ground (required)
 
 ### Response
 
@@ -284,3 +286,62 @@ This endpoint retrieves detailed information about a specific ground based on it
     },
     "message": "Ground Details are fetched successfully!"
 }
+
+## Delete Ground Api
+
+### Request
+
+- **Method:** POST
+- **URL:** /api/app/ground/deleteGround
+- **Body Parameters:**
+  - ground_id: ID of the ground to be deleted (required)
+
+### Response
+
+- **Status Code:** 
+  - 200 OK: Ground deleted successfully.
+  - 201 Created: Ground not found.
+  - 400 Bad Request: Internal Server Error.
+
+- **Response Body (Success):**
+```json
+{
+  "success": true,
+  "message": "Ground deleted successfully!"
+}
+
+## Get Ground Images
+
+### Request
+
+- **Method:** GET
+- **URL:** /api/app/ground/getImageList
+- **Body Parameters:**
+  - ground_id: ID of the ground (required)
+
+### Response
+
+- **Status Code:** 
+  - 200 OK: Ground images retrieved successfully.
+  - 400 Bad Request: ground_id is invalid or Internal Server Error.
+  - 404 Not Found: Ground images not found.
+
+- **Response Body (Success):**
+```json
+{
+  "success": true,
+  "data": [
+        {
+            "_id": "65f9cc6bf99f259c2cf35c2b",
+            "ground_id": "65f9cc66f99f259c2cf35c26",
+            "image_order_id": 1,
+            "image_url": "https://res.cloudinary.com/dujldtzay/image/upload/v1710869612/grounds/dgysgqvl3gogmtz7xask.jpg",
+            "image_path": "grounds/dgysgqvl3gogmtz7xask",
+            "thumb_img": true,
+            "__v": 0
+        },
+    // Additional image objects if available
+  ],
+  "message": "Ground Images retrieved successfully!"
+}
+
