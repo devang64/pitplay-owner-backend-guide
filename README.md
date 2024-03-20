@@ -346,3 +346,31 @@ This endpoint retrieves detailed information about a specific ground based on it
 }
 
 ```
+# generateOtpAndSend Function
+
+## Endpoint
+
+- **URL:** `/api/app/auth/sendOtp`
+- **Method:** POST
+
+## Request Parameters
+
+- **Body:**
+  - `mobile_number`: The mobile number to which the OTP will be sent.
+
+## Responses
+
+### Success Response
+
+- **Status Code:** 200 OK
+- **Body:**
+  ```json
+  {
+    "success": true,
+    "data": {
+      "sms_status": true,
+      "otp": "123456",
+      "key": "encryptedId"
+    },
+    "message": "OTP Sent to <mobile_number>"
+  }
