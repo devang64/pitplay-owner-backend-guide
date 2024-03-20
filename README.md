@@ -2,6 +2,7 @@
 ## Table of Contents
 1. [Create Ground Api](#ground-creation-api)
 2. [Get All Ground List Api](#get-all-grounds)
+3. [Show Ground Details Api](#show-ground-details)
 
 ### **Ground Creation API**
 ### Endpoint:
@@ -205,3 +206,48 @@ This endpoint retrieves a paginated list of all available grounds.
 ```
 
 ###
+
+## Show Ground Details
+
+This endpoint retrieves detailed information about a specific ground based on its ID.
+
+### Request
+
+- **Method:** GET
+- **URL:** /api/app/ground/showGround
+- **Body Parameters:**
+  - id: ID of the ground (required)
+
+### Response
+
+- **Status Code:** 
+  - 200 OK: Successfully retrieved ground details.
+  - 404 Not Found: Ground is not available.
+  - 500 Bad Request: Internal Server Error.
+
+- **Response Body (Success):**
+```json
+{
+  "success": true,
+  "data": {
+    "_id": "ground_id",
+    "ground_name": "Ground Name",
+    "ground_address": "Ground Address",
+    "ground_service": ["Service 1", "Service 2"],
+    "ground_sports": ["Sport 1", "Sport 2"],
+    "images": ["Image URL 1", "Image URL 2"],
+    "totalRatings": 5,
+    "ratings": [
+      {
+        "_id": "rating_id_1",
+        "user_id": {
+          "first_name": "First",
+          "last_name": "Last"
+        },
+        "rating_value": 4
+      },
+      // Additional rating objects if available
+    ]
+  },
+  "message": "Ground Details are fetched successfully!"
+}
