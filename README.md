@@ -427,7 +427,7 @@ This endpoint retrieves detailed information about a specific ground based on it
     "message": "OTP Sent to <mobile_number>"
   }
 
-##Verify OTP
+## Verify OTP
 
 ### Request
 
