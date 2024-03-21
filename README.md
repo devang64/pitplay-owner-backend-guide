@@ -1,12 +1,13 @@
 # pitplay-owner-backend-guide
 ## Table of Contents
 1. [Create Ground Api](#ground-creation-api)
-2. [Get All Ground List Api](#get-all-grounds)
-3. [Show Ground Details Api](#show-ground-details)
-4. [Delete Ground Api](#delete-ground-api)
-5. [Get Ground Images APi](#get-ground-images)
-6. [send Otp to mobile number Api](#send-otp-to-mobile-number-api)
-7. [verify otp](#verify-otp)
+2. [Update Ground](#update-ground)
+3. [Get All Ground List Api](#get-all-grounds)
+4. [Show Ground Details Api](#show-ground-details)
+5. [Delete Ground Api](#delete-ground-api)
+6. [Get Ground Images APi](#get-ground-images)
+7. [send Otp to mobile number Api](#send-otp-to-mobile-number-api)
+8. [verify otp](#verify-otp)
 ### **Ground Creation API**
 ### Endpoint:
 
@@ -162,6 +163,56 @@
   "message": "Internal Server Error"
   }
   ```
+## Update Ground
+
+This endpoint is used to update details of a specific ground.
+
+### Request
+
+- **Method:** POST
+- **URL:** `/api/app/ground/updateGround`
+- **Body Parameters:**
+  - ground_id: ID of the ground to be updated (required)
+  - ground_name: Name of the ground (required)
+  - ground_description: Description of the ground (required)
+  - ground_address: Address of the ground (required)
+  - city: City where the ground is located (required)
+  - state: State where the ground is located (required)
+  - pincode: Pincode of the ground location (required)
+  - latitude: Latitude coordinate of the ground location (required)
+  - longitude: Longitude coordinate of the ground location (required)
+  - contact_no: Contact number of the ground (required)
+  - ground_opening: Opening time of the ground (required)
+  - ground_closing: Closing time of the ground (required)
+  - price_per_hour: Price per hour for using the ground (required)
+  - price_per_day: Price per day for using the ground (required)
+  - weekend_per_day: Weekend price per day for using the ground (required)
+  - weekend_per_hour: Weekend price per hour for using the ground (required)
+  - weekend_night_price: Weekend night price for using the ground (required)
+  - night_start_time: Start time of night rates for using the ground (required)
+  - size_of_ground: Size of the ground (required)
+  - user_id: ID of the user associated with the ground (required)
+  - ground_service: Array of services available at the ground (required)
+  - ground_sports: Array of sports available at the ground (required)
+  - status: Status of the ground (required)
+  - night_price: Price for using the ground during night time (required)
+  - Files: Images of the ground (optional)
+
+### Response
+
+- **Status Code:**
+  - 200 OK: Ground details updated successfully.
+  - 400 Bad Request: One or more required fields are missing.
+  - 500 Internal Server Error: An error occurred while processing the request.
+
+- **Response Body (Success):**
+
+```json
+{
+  "success": true,
+  "data": { ...updatedGroundDetails },
+  "message": "Ground updated successfully!"
+}
 
 ## Get All Grounds
 
@@ -375,9 +426,8 @@ This endpoint retrieves detailed information about a specific ground based on it
     },
     "message": "OTP Sent to <mobile_number>"
   }
-```
 
-## Verify OTP
+##Verify OTP
 
 ### Request
 
