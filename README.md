@@ -213,7 +213,7 @@ This endpoint is used to update details of a specific ground.
   "data": { ...updatedGroundDetails },
   "message": "Ground updated successfully!"
 }
-
+```
 ## Get All Grounds
 
 This endpoint retrieves a paginated list of all available grounds.
