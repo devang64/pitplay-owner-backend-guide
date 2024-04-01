@@ -222,12 +222,20 @@ This endpoint retrieves a paginated list of all available grounds.
 
 - **Method:** GET
 - **URL:** `/api/app/ground/groundList`
+- GET `/api/app/ground/groundList?page=1&pageSize=10&includeTotal=true`
 - **Query Parameters:**
-    - page (optional): Page number (default: 1)
-    - limit (optional): Number of items per page (default: 10)
+    - page (optional): The page number of the results. Default is 1.
+    - pageSize: (optional): Number of grounds to include per page. Default is 10.
+    - includeTotal: (optional): Set to 'true' to include the total count of grounds.
 
 ### Response
-
+- pagination: Object containing pagination details.
+- pageSize: Number of grounds per page.
+- page: Current page number.
+- totalPages: Total number of pages.
+- totalGrounds: Total count of grounds (if requested).
+- prevPageLink: Link to the previous page if available, otherwise null.
+- nextPageLink: Link to the next page if available, otherwise null.
 - **Status Code:**
     - 200 OK: Successfully retrieved the list of grounds.
     - 404 Not Found: No grounds available.
@@ -247,10 +255,13 @@ This endpoint retrieves a paginated list of all available grounds.
       "ground_cover_img": "Cover Image URL"
     }
   ],
-  "pagination": {
-    "totalGrounds": 100, 
-    "totalPages": 10, 
-    "currentPage": 1 
+   "pagination": {
+    "pageSize": 10,
+    "page": 1,
+    "totalPages": 3,
+    "totalGrounds": 25,
+    "prevPageLink": null,
+    "nextPageLink": "http://example.com/api/ground/groundList?page=2&pageSize=10&includeTotal=true"
   }
 }
 
