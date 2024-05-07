@@ -76,7 +76,10 @@
         - **`status`**: String (availability status of the sports facility: "available" or "unavailable")
 23. **`status`**: String
     - Description: availability status of the ground: "available" or "unavailable" or "booked”.
+   
+24. **`images`**: Array of image file
 
+    
 ### Response:
 
 - **Content Type:** JSON
@@ -154,6 +157,33 @@
 
 ### **Error Response:**
 
+- **Status Code:** 400 Bad Request
+- **Body:**
+   ```json
+  {
+  "success": false,
+  "message": "Required field is missing!"
+  }
+  ```
+   
+- **Status Code:** 400 Bad Request
+- **Body:**
+   ```json
+  {
+  "success": false,
+  "message": "Duplicate key 'field value' already exists!"
+  }
+  ```
+   
+- **Status Code:** 400 Bad Request
+- **Body:**
+   ```json
+  {
+  "success": false,
+  "message": ["Validation error message 1", "Validation error message 2", ...]
+  }
+  ```
+   
 - **Status Code:** 500 Internal Server Error
 - **Body:**
    ```json
@@ -196,7 +226,8 @@ This endpoint is used to update details of a specific ground.
   - `ground_sports`: Array of sports available at the ground (required)
   - `status`: Status of the ground (required)
   - `night_price`: Price for using the ground during night time (required)
-  - `Files`: Images of the ground (optional)
+  - `images`: array of new Images of the ground (optional)
+  - `deleted_images`: array of deletd_images (which you want to delete)
 
 ### Response
 
@@ -224,9 +255,9 @@ This endpoint retrieves a paginated list of all available grounds.
 - **URL:** `/api/app/ground/groundList`
 - GET `/api/app/ground/groundList?page=1&pageSize=10&includeTotal=true`
 - **Query Parameters:**
-    - page (optional): The page number of the results. Default is 1.
-    - pageSize: (optional): Number of grounds to include per page. Default is 10.
-    - includeTotal: (optional): Set to 'true' to include the total count of grounds.
+    - page (Number, optional): Specifies the page number for pagination (default: 1).
+    - pageSize (Number, optional): Specifies the number of items per page (default: 10).
+    - search (String, optional): Performs a case-insensitive search across ground name, address, state, and city.
 
 ### Response
 - pagination: Object containing pagination details.
@@ -246,14 +277,104 @@ This endpoint retrieves a paginated list of all available grounds.
 {
   "success": true,
   "data": [
-    {
-      "_id": "ground_id",
-      "ground_name": "Ground Name",
-      "ground_address": "Ground Address",
-      "ground_service": ["Service 1", "Service 2"],
-      "ground_sports": ["Sport 1", "Sport 2"],
-      "ground_cover_img": "Cover Image URL"
-    }
+      {
+            "_id": "6622273395b62e444a583951",
+            "ground_name": "dfsd",
+            "ground_description": "This is a sample ground description.",
+            "ground_address": "123 Sample Street",
+            "pincode": 12345,
+            "country": "India",
+            "city": "Surat",
+            "state": "Gujrat",
+            "latitude": 21.2789885,
+            "longitude": 72.7989643,
+            "contact_no": "123-456-7890",
+            "ground_opening": "11:00 PM",
+            "ground_closing": "10:00 PM",
+            "price_per_hour": 50,
+            "price_per_day": 300,
+            "night_price": 200,
+            "weekend_per_day": 350,
+            "weekend_per_hour": 60,
+            "weekend_night_price": 75,
+            "night_start_time": "06:00",
+            "size_of_ground": "60 by 60 ft",
+            "ground_service": [
+                {
+                    "service_id": "6618c8e8b06f0f17e1e49bb2",
+                    "service_name": "Bad minton",
+                    "service_price_hour": 20,
+                    "service_price_day": 100
+                }
+            ],
+            "ground_sports": [
+                {
+                    "sports_id": "65f2f83972bac300de4bc64f",
+                    "sports_name": "football"
+                }
+            ],
+            "status": "booked",
+            "images": [
+                {
+                    "_id": "66223285a9f92d0d33643cba",
+                    "ground_id": "6622273395b62e444a583951",
+                    "image_order_id": 1,
+                    "image_url": "https://res.cloudinary.com/dxyjq5lwk/image/upload/v1713517189/grounds/ipyhdqm9tcet08gavmna.jpg",
+                    "image_path": "grounds/ipyhdqm9tcet08gavmna",
+                    "thumb_img": true,
+                    "__v": 0
+                }
+            ]
+        },
+        {
+            "_id": "66223eabcb8ec1e4fc7c378b",
+            "ground_name": "Test1",
+            "ground_description": "tt",
+            "ground_address": "hhh",
+            "pincode": 654765,
+            "country": "India",
+            "city": "Asarganj",
+            "state": "Bihar",
+            "latitude": 25.1475962,
+            "longitude": 86.6875465,
+            "contact_no": "4536456464",
+            "ground_opening": "12:00 AM",
+            "ground_closing": "1:00 AM",
+            "price_per_hour": 33,
+            "price_per_day": 33,
+            "night_price": 44,
+            "weekend_per_day": 44,
+            "weekend_per_hour": 44,
+            "weekend_night_price": 55,
+            "night_start_time": "2:00 AM",
+            "size_of_ground": "44",
+            "ground_service": [
+                {
+                    "service_id": "660ce743b9acda29fb8dfe2e",
+                    "service_name": "football",
+                    "service_price_hour": 124,
+                    "service_price_day": 44
+                }
+            ],
+            "ground_sports": [
+                {
+                    "sports_id": "661e8b927475c568a6ca50c4",
+                    "sports_name": "Test"
+                }
+            ],
+            "status": "available",
+            "images": [
+                {
+                    "_id": "662658f9348aee0c00d3afdf",
+                    "ground_id": "66223eabcb8ec1e4fc7c378b",
+                    "image_order_id": 1,
+                    "image_url": "https://res.cloudinary.com/dxyjq5lwk/image/upload/v1713789177/grounds/q1ak5iqpu5d880ba8fy3.jpg",
+                    "image_path": "grounds/q1ak5iqpu5d880ba8fy3",
+                    "thumb_img": true,
+                    "__v": 0
+                }
+            ]
+        }
   ],
    "pagination": {
     "pageSize": 10,
