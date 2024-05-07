@@ -5,9 +5,11 @@
 3. [Get All Ground List Api](#get-all-grounds)
 4. [Show Ground Details Api](#show-ground-details)
 5. [Delete Ground Api](#delete-ground-api)
-6. [Get Ground Images APi](#get-ground-images)
-7. [send Otp to mobile number Api](#send-otp-to-mobile-number-api)
-8. [verify otp](#verify-otp)
+6. [send Otp to mobile number](#send-otp-to-mobile-number-api)
+7. [verify otp](#verify-otp)
+8. [Bookings List](#retrieve-all-bookings)
+
+
 ### **Ground Creation API**
 ### Endpoint:
 
@@ -158,6 +160,7 @@
 ### **Error Response:**
 
 - **Status Code:** 400 Bad Request
+- description : This error indicates that one or more required fields are missing in the request body. It prompts the client to provide values for all mandatory fields.
 - **Body:**
    ```json
   {
@@ -167,6 +170,7 @@
   ```
    
 - **Status Code:** 400 Bad Request
+- Discription : This error occurs when trying to create a ground with a value for a field that already exists in the database and is meant to be unique. It informs the client that the provided value for the field is a duplicate and cannot be accepted.
 - **Body:**
    ```json
   {
@@ -176,15 +180,17 @@
   ```
    
 - **Status Code:** 400 Bad Request
+- Description : This error is triggered by validation errors, such as incorrect data types or values failing validation rules. It returns an array of validation error messages to help the client understand what specific issues need to be addressed.
 - **Body:**
    ```json
   {
   "success": false,
-  "message": ["Validation error message 1", "Validation error message 2", ...]
+  "message": ["Validation error message 1", "Validation error message 2"]
   }
   ```
    
 - **Status Code:** 500 Internal Server Error
+- Description : This error is a generic indication that something unexpected happened on the server-side while processing the request. The error message provides additional details about the nature of the error, which can be useful for debugging purposes.
 - **Body:**
    ```json
   {
@@ -532,8 +538,7 @@ This endpoint retrieves detailed information about a specific ground based on it
 ```
 # send Otp to mobile number Api
 
-## Endpoint
-
+- Description : This endpoint generates an OTP and sends it to the provided mobile number. If the user associated with the mobile number does not exist in the database, it creates a new user record with the mobile number and the generated OTP. and by default user role is 2(Owner).
 - **URL:** `/api/app/auth/sendOtp`
 - **Method:** POST
 
@@ -546,7 +551,11 @@ This endpoint retrieves detailed information about a specific ground based on it
 
 ### Success Response
 
-- **Status Code:** 200 OK
+- **Status Code:**
+- 200 OK : OTP SENT
+- 400 Bad request Sending multiple OTP requests to the same number is not allowed: Indicate that sending multiple OTP requests to the same mobile number is not permitted to prevent misuse or spamming.
+- 400 Bad request Please enter a mobile number!: Returned when the mobile_number field is missing in the request body. Prompt the client to provide a mobile number.
+- 500 internal Server Error: An error occurred while processing the request.
 - **Body:**
   ```json
   {
@@ -584,3 +593,68 @@ This endpoint retrieves detailed information about a specific ground based on it
   "message": "User is authenticated!"
 }
 ```
+
+## Retrieve All Bookings
+
+### Request
+
+- **Method:** GET
+- **URL:** `/api/app/booking/allBookings/`
+- Description : This API endpoint sends an HTTP GET request to {{local}}/api/app/booking/allBookings to retrieve all bookings, including the total count.
+- The request includes the following parameters in the query string:
+- `page`: (optional) The page number for pagination.
+- `pageSize`: (optional) The number of items per page.
+- `status`: (optional) The status of the bookings.
+- `contact_no`: (optional) The contact number associated with the bookings.
+
+- **Response Body (Success):**
+- Upon a successful request, the API returns a JSON response with a 200 status code. The response body includes the following key-value pairs:
+- `success`: A boolean flag indicating the success status of the request.
+- `data`: An array containing booking details, including order slot ID, user information, ground details, booking type, date, time, price, booking ID, payment method, transaction ID, discount amount, total amount, creation and update timestamps, and status.
+- `pagination`: An object providing pagination details such as page size, page number, total pages, total booked slots, and flags for next and previous pages.
+- `message`: A field that may contain additional information or status messages.
+
+```json
+{
+    "success": true,
+    "data": [
+        {
+            "order_slot_id": "",
+            "user": {
+                "contact_no": 0,
+                "email": "",
+                "first_name": "",
+                "last_name": ""
+            },
+            "ground_name": "",
+            "ground_address": "",
+            "booking_type": "",
+            "date": "",
+            "from_time": "",
+            "to_time": "",
+            "price": 0,
+            "booking": {
+                "booking_id": "",
+                "payment_method": "",
+                "transaction_id": "",
+                "discount_amount": 0,
+                "total_amount": 0,
+                "createdAt": "",
+                "updatedAt": ""
+            },
+            "status": ""
+        }
+    ],
+    "pagination": {
+        "pageSize": null,
+        "page": null,
+        "totalPages": null,
+        "totalBookedSlots": 0,
+        "hasNextPage": true,
+        "hasPrevPage": true,
+        "prevPageLink": "",
+        "nextPageLink": null
+    },
+    "message": "Booking Data fetch successfully"
+}
+````
