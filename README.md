@@ -783,20 +783,4 @@ This endpoint retrieves detailed information about a specific ground based on it
   ```json
   ```
 
-## Create Booking
 
-### Request
-- **Method:** GET
-- **URL:** `/api/app/booking/showBooking`
-
-### Response
-- **Status Code:**
-  - 200 OK: Booking created successfully.
-  - 400 Bad Request All fields are required!: Returned when one or more required fields (user_id, payment_method, transaction_id, total_amount) are missing in the request body. Prompt the client to provide all necessary information.
-  - 500 Internal Server Error: An error occurred while processing the request.
- 
-- **Response Body (Success):**
-  ```json
-  ```
-
-  
