@@ -7,7 +7,9 @@
 5. [Delete Ground Api](#delete-ground-api)
 6. [send Otp to mobile number](#send-otp-to-mobile-number-api)
 7. [verify otp](#verify-otp)
-8. [Bookings List](#retrieve-all-bookings)
+8. [Bookings List](#bookings-list)
+9. [Create Booking](#create-booking)
+10. [Show Booking Details](#show-booking-details)
 
 
 ### **Ground Creation API**
@@ -586,21 +588,19 @@ This endpoint retrieves detailed information about a specific ground based on it
   - 500 Internal Server Error: An error occurred while processing the request.
 
 - **Response Body (Success):**
-
 ```json
 {
   "success": true,
   "message": "User is authenticated!"
 }
 ```
-
-## Retrieve All Bookings
+## Bookings List
 
 ### Request
 
 - **Method:** GET
 - **URL:** `/api/app/booking/allBookings/`
-- Description : This API endpoint sends an HTTP GET request to {{local}}/api/app/booking/allBookings to retrieve all bookings, including the total count.
+- Description : This API endpoint sends an HTTP GET request to /api/app/booking/allBookings to retrieve all bookings, including the total count.
 - The request includes the following parameters in the query string:
 - `page`: (optional) The page number for pagination.
 - `pageSize`: (optional) The number of items per page.
@@ -658,3 +658,145 @@ This endpoint retrieves detailed information about a specific ground based on it
     "message": "Booking Data fetch successfully"
 }
 ````
+
+## Create Booking
+
+### Request
+- **Method:** GET
+- **URL:** `/api/app/booking/allBookings/`
+
+- **Response Body (Success):**
+  ```json
+  {
+  "ground_id": "String",
+  "coupon_id": "String",
+  "payment_method": "String",
+  "transaction_id": "String",
+  "discount_amount": "Number",
+  "total_amount": "Number",
+  "slots": [
+    {
+      "booking_type": "String",
+      "date": "Date",
+      "from_time": "String",
+      "to_time": "String",
+      "order_slot_price": "Number",
+      "status": "String"
+    }
+  ],
+  "services": [
+    {
+      "service_id": "String",
+      "service_book_price": "Number"
+    }
+  ]
+  }
+
+  ```
+### Response
+
+- **Status Code:**
+  - 200 OK: Booking created successfully.
+  - 400 Bad Request All fields are required!: Returned when one or more required fields (user_id, payment_method, transaction_id, total_amount) are missing in the request body. Prompt the client to provide all necessary information.
+  - 500 Internal Server Error: An error occurred while processing the request.
+ 
+- **Response Body (Success):**
+  ````json
+    {
+    "success": true,
+    "message": "Booking created successfully",
+    "data": {
+       "booking": { },
+       "order_slots": [{},{}],
+       "order_services": [{},{}]
+      }
+    }
+  ````
+
+## Show Booking Details
+
+### Request
+- **Method:** GET
+- **URL:** `/api/app/booking/showBooking`
+- **Query Parameters:** `order_slot_id`: The ID of the order slot for which booking details are requested.
+
+  
+### Response
+- **Status Code:**
+  - 200 OK: Booking created successfully.
+  - 500 Internal Server Error: An error occurred while processing the request.
+ 
+- **Response Body (Success):**
+  ```json
+  {
+  "success": true,
+  "data": {
+    "user": {
+      "first_name": "String",
+      "last_name": "String",
+      "contact_no": "String",
+      "email": "String"
+    },
+    "ground_name": "String",
+    "ground_address": "String",
+    "booking_type": "String",
+    "date": "Date",
+    "from_time": "String",
+    "to_time": "String",
+    "price": "Number",
+    "booking": {
+      "coupon_code": "String",
+      "payment_method": "String",
+      "transaction_id": "String",
+      "discount_amount": "Number",
+      "total_amount": "Number",
+      "createdAt": "Date",
+      "updatedAt": "Date"
+    },
+    "order_services": [
+      {
+        "order_slot_id": "String",
+        "service_name": "String",
+        "service_book_price": "Number"
+      }
+    ],
+    "status": "String"
+  },
+  "message": "Booking fetched successfully"
+  }
+
+  ```
+
+## Create Booking
+
+### Request
+- **Method:** GET
+- **URL:** `/api/app/booking/showBooking`
+
+### Response
+- **Status Code:**
+  - 200 OK: Booking created successfully.
+  - 400 Bad Request All fields are required!: Returned when one or more required fields (user_id, payment_method, transaction_id, total_amount) are missing in the request body. Prompt the client to provide all necessary information.
+  - 500 Internal Server Error: An error occurred while processing the request.
+ 
+- **Response Body (Success):**
+  ```json
+  ```
+
+## Create Booking
+
+### Request
+- **Method:** GET
+- **URL:** `/api/app/booking/showBooking`
+
+### Response
+- **Status Code:**
+  - 200 OK: Booking created successfully.
+  - 400 Bad Request All fields are required!: Returned when one or more required fields (user_id, payment_method, transaction_id, total_amount) are missing in the request body. Prompt the client to provide all necessary information.
+  - 500 Internal Server Error: An error occurred while processing the request.
+ 
+- **Response Body (Success):**
+  ```json
+  ```
+
+  
