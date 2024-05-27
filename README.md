@@ -669,7 +669,7 @@ This endpoint retrieves detailed information about a specific ground based on it
   ```json
   {
   "ground_id": "String",
-  "coupon_id": "String",
+  "coupon_id": "String", //optional
   "payment_method": "String",
   "transaction_id": "String",
   "discount_amount": "Number",
