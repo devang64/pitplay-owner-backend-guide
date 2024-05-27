@@ -662,10 +662,10 @@ This endpoint retrieves detailed information about a specific ground based on it
 ## Create Booking
 
 ### Request
-- **Method:** GET
-- **URL:** `/api/app/booking/allBookings/`
+- **Method:** POST
+- **URL:** `/api/app/booking/createBooking/`
 
-- **Response Body (Success):**
+- **Request Body (Success):**
   ```json
   {
   "ground_id": "String",
@@ -680,7 +680,7 @@ This endpoint retrieves detailed information about a specific ground based on it
       "date": "Date",
       "from_time": "String",
       "to_time": "String",
-      "order_slot_price": "Number",
+      "price": "Number",
       "status": "String"
     }
   ],
@@ -699,6 +699,10 @@ This endpoint retrieves detailed information about a specific ground based on it
   - 200 OK: Booking created successfully.
   - 400 Bad Request All fields are required!: Returned when one or more required fields (user_id, payment_method, transaction_id, total_amount) are missing in the request body. Prompt the client to provide all necessary information.
   - 500 Internal Server Error: An error occurred while processing the request.
+  - If one or more time slots are already booked, a `400 Bad Request` response will be returned with the message: "One or more time slots are already booked".
+  - If the coupon usage limit is `exceeded`, a `400 Bad Request` response will be returned with the message: "Coupon usage limit exceeded!".
+  - If the `coupon ID` is invalid, a `400 Bad Request` response will be returned with the message: "Invalid coupon ID!".
+  - If an `unexpected error` occurs on the server, a 500 Internal Server Error response will be returned with the message: "Internal Server Error".
  
 - **Response Body (Success):**
   ````json
@@ -712,75 +716,4 @@ This endpoint retrieves detailed information about a specific ground based on it
       }
     }
   ````
-
-## Show Booking Details
-
-### Request
-- **Method:** GET
-- **URL:** `/api/app/booking/showBooking`
-- **Query Parameters:** `order_slot_id`: The ID of the order slot for which booking details are requested.
-
-  
-### Response
-- **Status Code:**
-  - 200 OK: Booking created successfully.
-  - 500 Internal Server Error: An error occurred while processing the request.
- 
-- **Response Body (Success):**
-  ```json
-  {
-  "success": true,
-  "data": {
-    "user": {
-      "first_name": "String",
-      "last_name": "String",
-      "contact_no": "String",
-      "email": "String"
-    },
-    "ground_name": "String",
-    "ground_address": "String",
-    "booking_type": "String",
-    "date": "Date",
-    "from_time": "String",
-    "to_time": "String",
-    "price": "Number",
-    "booking": {
-      "coupon_code": "String",
-      "payment_method": "String",
-      "transaction_id": "String",
-      "discount_amount": "Number",
-      "total_amount": "Number",
-      "createdAt": "Date",
-      "updatedAt": "Date"
-    },
-    "order_services": [
-      {
-        "order_slot_id": "String",
-        "service_name": "String",
-        "service_book_price": "Number"
-      }
-    ],
-    "status": "String"
-  },
-  "message": "Booking fetched successfully"
-  }
-
-  ```
-
-## Create Booking
-
-### Request
-- **Method:** GET
-- **URL:** `/api/app/booking/showBooking`
-
-### Response
-- **Status Code:**
-  - 200 OK: Booking created successfully.
-  - 400 Bad Request All fields are required!: Returned when one or more required fields (user_id, payment_method, transaction_id, total_amount) are missing in the request body. Prompt the client to provide all necessary information.
-  - 500 Internal Server Error: An error occurred while processing the request.
- 
-- **Response Body (Success):**
-  ```json
-  ```
-
 
